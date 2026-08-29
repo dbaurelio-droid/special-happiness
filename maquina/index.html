@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Quanto guardar por mês para chegar a um milhão, e o preço de começar tarde. Ilustração do efeito do tempo — não é recomendação de investimento.">
+<meta name="theme-color" content="#F3F6FF">
+<title>A Máquina do Milhão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --bg:#F3F6FF; --surface:#FFFFFF; --surface-2:#F6F8FF;
+  --ink:#151B33; --ink-soft:#5B6588; --line:#DCE3F7; --edge:#1B2340;
+  --grape:#6C4CF1; --grape-soft:#EDE8FF;
+  --coin:#FFC93C; --coin-soft:#FFF4D4;
+  --mint:#0FA97C; --mint-soft:#DDF6EE;
+  --sky:#3BA9F5;
+  --shadow:rgba(27,35,64,.16);
+  --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --f-body:Nunito,"Segoe UI",system-ui,sans-serif;
+  --f-num:"DM Mono","SFMono-Regular",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101528; --surface:#1A2138; --surface-2:#222B48;
+    --ink:#F0F4FF; --ink-soft:#9FA9CC; --line:#2E3A5E; --edge:#3B4877;
+    --grape:#9C86FF; --grape-soft:#2A2350;
+    --coin:#FFD35C; --coin-soft:#3B3116;
+    --mint:#25D3A0; --mint-soft:#123A31;
+    --sky:#5FBBFF; --shadow:rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101528; --surface:#1A2138; --surface-2:#222B48;
+  --ink:#F0F4FF; --ink-soft:#9FA9CC; --line:#2E3A5E; --edge:#3B4877;
+  --grape:#9C86FF; --grape-soft:#2A2350;
+  --coin:#FFD35C; --coin-soft:#3B3116;
+  --mint:#25D3A0; --mint-soft:#123A31;
+  --sky:#5FBBFF; --shadow:rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 80px}
+
+header{margin-bottom:26px}
+.eyebrow{font-family:var(--f-num);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
+h1{font-family:var(--f-display);font-size:clamp(34px,6.5vw,52px);line-height:1.05;margin:8px 0 10px;text-wrap:balance}
+.deck{font-size:18px;color:var(--ink-soft);max-width:56ch;margin:0}
+
+.warnbar{margin:18px 0 0;padding:12px 16px;border-radius:12px;background:var(--coin-soft);
+  color:var(--ink);font-size:14.5px;line-height:1.45;max-width:62ch}
+.panel{background:var(--surface);border:3px solid var(--edge);border-radius:22px;
+  box-shadow:0 5px 0 var(--shadow);padding:24px 26px;margin:24px 0}
+
+/* controles */
+.ctrls{display:grid;grid-template-columns:1fr 1fr;gap:20px 26px}
+@media (max-width:640px){.ctrls{grid-template-columns:1fr}}
+.ctrl label{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font-family:var(--f-num);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px}
+.ctrl label b{font-family:var(--f-display);font-size:21px;color:var(--ink);letter-spacing:0;text-transform:none}
+input[type=range]{width:100%;accent-color:var(--grape);height:26px;margin:0}
+input[type=range]:focus-visible{outline:3px solid var(--grape);outline-offset:4px;border-radius:6px}
+
+.hint{font-size:13px;color:var(--ink-soft);margin-top:5px;line-height:1.4}
+.hint b{font-family:var(--f-num);color:var(--ink)}
+.money-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.cur{font:600 14px var(--f-body);padding:7px 14px;border-radius:999px;cursor:pointer;
+  border:2px solid var(--line);background:var(--surface-2);color:var(--ink-soft)}
+.cur[aria-pressed="true"]{background:var(--coin);border-color:var(--edge);color:var(--edge)}
+.cur:focus-visible{outline:3px solid var(--grape);outline-offset:3px}
+
+/* resultado */
+.out{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:start}
+@media (max-width:700px){.out{grid-template-columns:1fr}}
+.big{font-family:var(--f-display);font-size:clamp(40px,8vw,64px);line-height:1;color:var(--mint);
+  font-variant-numeric:tabular-nums;margin:2px 0 4px}
+.cap{font-family:var(--f-num);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+
+.split{margin-top:18px}
+.bar{display:flex;height:30px;border:3px solid var(--edge);border-radius:999px;overflow:hidden;background:var(--surface-2)}
+.bar span{display:block;transition:width .25s ease}
+.b-you{background:var(--coin)}
+.b-time{background:var(--mint)}
+@media (prefers-reduced-motion:reduce){.bar span{transition:none}}
+.keys{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font-size:14px}
+.key{display:flex;align-items:center;gap:7px}
+.dot{width:13px;height:13px;border-radius:4px;border:2px solid var(--edge);flex:none}
+.dot.you{background:var(--coin)} .dot.time{background:var(--mint)}
+.key b{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+.goal{background:var(--grape-soft);border-radius:16px;padding:18px 20px}
+.goal .cap{margin-bottom:4px}
+.goal .n{font-family:var(--f-display);font-size:clamp(26px,5vw,36px);line-height:1.1;color:var(--grape);font-variant-numeric:tabular-nums}
+.goal p{margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
+
+svg.chart{width:100%;height:auto;display:block;margin-top:6px}
+
+/* tabela */
+h2{font-family:var(--f-display);font-size:26px;margin:0 0 6px}
+.sub{color:var(--ink-soft);font-size:15px;margin:0 0 16px;max-width:60ch}
+.scroller{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:15px}
+th,td{padding:11px 12px;text-align:left;border-bottom:2px solid var(--line)}
+thead th{font-family:var(--f-num);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-soft);border-bottom-width:3px;border-bottom-color:var(--edge)}
+td.num{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tr.here td{background:var(--coin-soft);font-weight:700}
+
+.note{font-size:14px;color:var(--ink-soft);margin-top:14px}
+.foot{margin-top:34px;padding-top:20px;border-top:3px solid var(--edge);font-size:14px;color:var(--ink-soft)}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Meu Caixa · guia dos pais</p>
+  <h1>A Máquina do Milhão</h1>
+  <p class="deck">Quanto por mês, começando em que idade. Mexa nos controles e veja quem faz o trabalho pesado — você ou o tempo.</p>
+  <p class="warnbar">Isto ilustra o efeito do tempo sobre o dinheiro. <strong>Não é recomendação de investimento</strong> e não indica onde aplicar.</p>
+</header>
+
+<div class="panel">
+  <div class="ctrls">
+    <div class="ctrl">
+      <label for="ini">Começa aos <b><span id="iniV">10</span> anos</b></label>
+      <input type="range" id="ini" min="5" max="55" step="1" value="10">
+    </div>
+    <div class="ctrl">
+      <label for="fim">Vai até os <b><span id="fimV">60</span> anos</b></label>
+      <input type="range" id="fim" min="30" max="75" step="1" value="60">
+    </div>
+    <div class="ctrl">
+      <label for="apo">Guarda por mês <b><span id="apoV">264</span></b></label>
+      <input type="range" id="apo" min="10" max="2000" step="10" value="264">
+    </div>
+    <div class="ctrl">
+      <label for="tax">Rende ao ano, acima da inflação <b><span id="taxV">6,2%</span></b></label>
+      <input type="range" id="tax" min="10" max="120" step="1" value="62">
+      <p class="hint" id="nominal"></p>
+    </div>
+    <div class="ctrl" style="grid-column:1/-1">
+      <span class="cap">Moeda — a conta é a mesma em qualquer uma</span>
+      <div class="money-row" id="curs">
+        <button class="cur" data-s="R$" aria-pressed="true">R$ real</button>
+        <button class="cur" data-s="US$" aria-pressed="false">US$ dólar</button>
+        <button class="cur" data-s="€" aria-pressed="false">€ euro</button>
+        <button class="cur" data-s="£" aria-pressed="false">£ libra</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="out">
+    <div>
+      <p class="cap">Vai ter aos <span id="fimV2">60</span> anos</p>
+      <p class="big" id="total">R$ 1.000.000</p>
+      <div class="split">
+        <div class="bar"><span class="b-you" id="barYou" style="width:32%"></span><span class="b-time" id="barTime" style="width:68%"></span></div>
+        <div class="keys">
+          <span class="key"><span class="dot you"></span> Você pôs <b id="posto">—</b></span>
+          <span class="key"><span class="dot time"></span> O tempo pôs <b id="juros">—</b></span>
+        </div>
+      </div>
+      <svg class="chart" id="chart" viewBox="0 0 640 220" role="img" aria-label="Crescimento ao longo dos anos"></svg>
+    </div>
+
+    <div class="goal">
+      <p class="cap">Para chegar a um milhão</p>
+      <p class="n" id="need">R$ 264 por mês</p>
+      <p id="needTxt">Começando aos 10 e indo até os 60.</p>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>O preço de esperar</h2>
+  <p class="sub">Quanto custa por mês chegar ao mesmo milhão, conforme a idade em que se começa. A linha destacada é a sua.</p>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Começa aos</th><th class="num">Por mês</th><th class="num">Quantas vezes mais</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <p class="note" id="tnote"></p>
+</div>
+
+<div class="foot">
+  <p><strong>Por que a máquina não usa o número que o banco anuncia.</strong> Uma aplicação que rende 1,2% ao mês parece dar 15,4% ao ano — e com essa conta bastariam <b>R$ 9,36 por mês</b> para juntar um milhão em cinquenta anos. Só que esse milhão, lá na frente, compraria o que R$ 110 mil compram hoje. O número do banco não desconta a inflação nem o imposto; o desta máquina desconta os dois.</p>
+
+  <p><strong>Sobre o rendimento.</strong> O controle é a taxa <em>real</em> — o que rende acima da inflação. Por isso o valor que aparece já está em poder de compra de hoje: um milhão aqui compra o que um milhão compra hoje, não o que valeria daqui a cinquenta anos.</p>
+  <p><strong>Isto não é recomendação de investimento, e nada aqui indica onde aplicar dinheiro.</strong> A máquina existe para ilustrar uma única coisa: o efeito do tempo. As taxas são hipóteses que você mesmo escolhe nos controles — rendimento de verdade varia, alguns anos são negativos, e a decisão de onde pôr dinheiro é de adulto, com orientação de quem é habilitado para isso.</p>
+</div>
+
+  <p style="margin-top:16px;padding-top:14px;border-top:2px solid var(--line)">
+    <strong>A Máquina do Milhão</strong> nasceu de uma apresentação criada para os cursos de
+    Aurelio de Bortoli, com design e ilustração originais de <strong>Fabio de Bortoli</strong>.</p>
+</div>
+
+<script>
+(function(){
+  var el = function(id){ return document.getElementById(id); };
+  var S = "R$";
+  var ini=el('ini'), fim=el('fim'), apo=el('apo'), tax=el('tax');
+
+  function fmt(v){
+    var n = Math.round(v).toLocaleString('pt-BR');
+    return S + " " + n;
+  }
+  function pmtFor(fv, n, i){ return fv*i/(Math.pow(1+i,n)-1); }
+  function fvOf(p, n, i){ return p*((Math.pow(1+i,n)-1)/i); }
+
+  function draw(){
+    var a0=+ini.value, a1=+fim.value;
+    if(a1 <= a0+1){ a1 = a0+2; fim.value = a1; }
+    var mensal=+apo.value, taxaAA=(+tax.value)/1000;
+    var i = Math.pow(1+taxaAA, 1/12)-1;
+    var anos = a1-a0, n = anos*12;
+
+    el('iniV').textContent=a0; el('fimV').textContent=a1; el('fimV2').textContent=a1;
+    el('apoV').textContent = S+" "+mensal.toLocaleString('pt-BR');
+    el('taxV').textContent = (taxaAA*100).toFixed(1).replace('.',',')+"%";
+
+    var total=fvOf(mensal,n,i), posto=mensal*n, juros=total-posto;
+    el('total').textContent=fmt(total);
+    el('posto').textContent=fmt(posto);
+    el('juros').textContent=fmt(juros);
+    var pYou = Math.max(2, Math.min(98, posto/total*100));
+    el('barYou').style.width=pYou+"%"; el('barTime').style.width=(100-pYou)+"%";
+
+    // traduz a taxa real para o que o banco anuncia
+    var infl=0.045, liq=(1+taxaAA)*(1+infl)-1, bruto=liq/0.85;
+    var aoMes=(Math.pow(1+bruto,1/12)-1)*100;
+    el('nominal').innerHTML="Equivale a mais ou menos <b>"+aoMes.toFixed(2).replace('.',',')+
+      "% ao mês</b> daqueles que os bancos anunciam, já tirando o imposto e uma inflação de 4,5%.";
+
+    var need=pmtFor(1e6,n,i);
+    el('need').textContent=fmt(need)+" por mês";
+    el('needTxt').textContent="Começando aos "+a0+" e indo até os "+a1+", em "+anos+" anos.";
+
+    // grafico de area empilhada
+    var W=640,H=220,P=6, pts=[], ptsTot=[];
+    for(var y=0;y<=anos;y++){
+      var m=y*12, t=(m===0)?0:fvOf(mensal,m,i), c=mensal*m;
+      pts.push([P+(W-2*P)*y/anos, c]); ptsTot.push([P+(W-2*P)*y/anos, t]);
+    }
+    var max=Math.max(total,1);
+    function Y(v){ return H-P-(H-2*P)*(v/max); }
+    function path(arr,close){
+      var d="M"+arr[0][0]+","+Y(arr[0][1]);
+      for(var k=1;k<arr.length;k++) d+="L"+arr[k][0]+","+Y(arr[k][1]);
+      if(close) d+="L"+arr[arr.length-1][0]+","+(H-P)+"L"+arr[0][0]+","+(H-P)+"Z";
+      return d;
+    }
+    var cs=getComputedStyle(document.documentElement);
+    var mint=cs.getPropertyValue('--mint').trim(), coin=cs.getPropertyValue('--coin').trim(),
+        edge=cs.getPropertyValue('--edge').trim(), line=cs.getPropertyValue('--line').trim();
+    el('chart').innerHTML =
+      '<line x1="'+P+'" y1="'+(H-P)+'" x2="'+(W-P)+'" y2="'+(H-P)+'" stroke="'+line+'" stroke-width="2"/>'+
+      '<path d="'+path(ptsTot,true)+'" fill="'+mint+'" opacity=".9"/>'+
+      '<path d="'+path(pts,true)+'" fill="'+coin+'"/>'+
+      '<path d="'+path(ptsTot,false)+'" fill="none" stroke="'+edge+'" stroke-width="3"/>'+
+      '<text x="'+P+'" y="'+(H-P+0)+'" font-size="11" fill="'+edge+'" opacity=".6" dy="-4">'+a0+' anos</text>'+
+      '<text x="'+(W-P)+'" y="'+(H-P)+'" font-size="11" text-anchor="end" fill="'+edge+'" opacity=".6" dy="-4">'+a1+' anos</text>';
+
+    // tabela
+    var base=null, rows="";
+    [10,20,30,40,50].forEach(function(idade){
+      var nn=(a1-idade)*12;
+      if(nn<=0){ return; }
+      var p=pmtFor(1e6,nn,i);
+      if(base===null) base=p;
+      rows+='<tr'+(idade===a0?' class="here"':'')+'><td>'+idade+' anos</td>'+
+            '<td class="num">'+fmt(p)+'</td>'+
+            '<td class="num">'+(p/base).toFixed(1).replace('.',',')+'×</td></tr>';
+    });
+    el('tbody').innerHTML=rows;
+    var p10=pmtFor(1e6,(a1-10)*12,i), p50=pmtFor(1e6,Math.max(12,(a1-50)*12),i);
+    el('tnote').textContent="Esperar dos 10 aos 50 multiplica o esforço por "+Math.round(p50/p10)+
+      " vezes — para chegar exatamente no mesmo lugar.";
+  }
+
+  [ini,fim,apo,tax].forEach(function(c){ c.addEventListener('input',draw); });
+  el('curs').addEventListener('click',function(e){
+    var b=e.target.closest('.cur'); if(!b) return;
+    [].forEach.call(this.querySelectorAll('.cur'),function(x){ x.setAttribute('aria-pressed','false'); });
+    b.setAttribute('aria-pressed','true'); S=b.dataset.s; draw();
+  });
+  draw();
+})();
+</script>
+
+</body>
+</html>
