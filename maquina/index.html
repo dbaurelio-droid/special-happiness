@@ -111,6 +111,10 @@ td.num{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nu
 tbody tr:last-child td{border-bottom:none}
 tr.here td{background:var(--coin-soft);font-weight:700}
 
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.langsel{font:600 13px var(--f-body);padding:6px 10px;border-radius:999px;cursor:pointer;
+  background:var(--surface);color:var(--ink);border:2px solid var(--line)}
+.langsel:focus-visible{outline:3px solid var(--grape);outline-offset:3px}
 .note{font-size:14px;color:var(--ink-soft);margin-top:14px}
 .foot{margin-top:34px;padding-top:20px;border-top:3px solid var(--edge);font-size:14px;color:var(--ink-soft)}
 </style>
@@ -120,39 +124,43 @@ tr.here td{background:var(--coin-soft);font-weight:700}
 <div class="wrap">
 
 <header>
-  <p class="eyebrow">Meu Caixa · guia dos pais</p>
-  <h1>A Máquina do Milhão</h1>
-  <p class="deck">Quanto por mês, começando em que idade. Mexa nos controles e veja quem faz o trabalho pesado — você ou o tempo.</p>
-  <p class="warnbar">Isto ilustra o efeito do tempo sobre o dinheiro. <strong>Não é recomendação de investimento</strong> e não indica onde aplicar.</p>
+  <div class="topbar">
+    <p class="eyebrow" id="t-eyebrow"></p>
+    <select class="langsel" id="lang" aria-label="Idioma / Language / Lingua">
+      <option value="pt">🇧🇷 Português</option>
+      <option value="en">🇺🇸 English (US)</option>
+      <option value="en-GB">🇬🇧 English (UK)</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="it">🇮🇹 Italiano</option>
+    </select>
+  </div>
+  <h1 id="t-h1"></h1>
+  <p class="deck" id="t-deck"></p>
+  <p class="warnbar" id="t-warn"></p>
 </header>
 
 <div class="panel">
   <div class="ctrls">
     <div class="ctrl">
-      <label for="ini">Começa aos <b><span id="iniV">10</span> anos</b></label>
+      <label for="ini"><span id="t-ini"></span> <b><span id="iniV">10</span> <span class="t-yrs"></span></b></label>
       <input type="range" id="ini" min="5" max="55" step="1" value="10">
     </div>
     <div class="ctrl">
-      <label for="fim">Vai até os <b><span id="fimV">60</span> anos</b></label>
+      <label for="fim"><span id="t-fim"></span> <b><span id="fimV">60</span> <span class="t-yrs"></span></b></label>
       <input type="range" id="fim" min="30" max="75" step="1" value="60">
     </div>
     <div class="ctrl">
-      <label for="apo">Guarda por mês <b><span id="apoV">264</span></b></label>
-      <input type="range" id="apo" min="10" max="2000" step="10" value="264">
+      <label for="apo"><span id="t-apo"></span> <b><span id="apoV">264</span></b></label>
+      <input type="range" id="apo" min="10" max="2000" step="1" value="264">
     </div>
     <div class="ctrl">
-      <label for="tax">Rende ao ano, acima da inflação <b><span id="taxV">6,2%</span></b></label>
+      <label for="tax"><span id="t-tax"></span> <b><span id="taxV">6,2%</span></b></label>
       <input type="range" id="tax" min="10" max="120" step="1" value="62">
       <p class="hint" id="nominal"></p>
     </div>
     <div class="ctrl" style="grid-column:1/-1">
-      <span class="cap">Moeda — a conta é a mesma em qualquer uma</span>
-      <div class="money-row" id="curs">
-        <button class="cur" data-s="R$" aria-pressed="true">R$ real</button>
-        <button class="cur" data-s="US$" aria-pressed="false">US$ dólar</button>
-        <button class="cur" data-s="€" aria-pressed="false">€ euro</button>
-        <button class="cur" data-s="£" aria-pressed="false">£ libra</button>
-      </div>
+      <span class="cap" id="t-cur"></span>
+      <div class="money-row" id="curs"></div>
     </div>
   </div>
 </div>
@@ -160,32 +168,32 @@ tr.here td{background:var(--coin-soft);font-weight:700}
 <div class="panel">
   <div class="out">
     <div>
-      <p class="cap">Vai ter aos <span id="fimV2">60</span> anos</p>
-      <p class="big" id="total">R$ 1.000.000</p>
+      <p class="cap"><span id="t-willhave"></span> <span id="fimV2">60</span> <span class="t-yrs"></span></p>
+      <p class="big" id="total">—</p>
       <div class="split">
         <div class="bar"><span class="b-you" id="barYou" style="width:32%"></span><span class="b-time" id="barTime" style="width:68%"></span></div>
         <div class="keys">
-          <span class="key"><span class="dot you"></span> Você pôs <b id="posto">—</b></span>
-          <span class="key"><span class="dot time"></span> O tempo pôs <b id="juros">—</b></span>
+          <span class="key"><span class="dot you"></span> <span id="t-youput"></span> <b id="posto">—</b></span>
+          <span class="key"><span class="dot time"></span> <span id="t-timeput"></span> <b id="juros">—</b></span>
         </div>
       </div>
-      <svg class="chart" id="chart" viewBox="0 0 640 220" role="img" aria-label="Crescimento ao longo dos anos"></svg>
+      <svg class="chart" id="chart" viewBox="0 0 640 220" role="img"></svg>
     </div>
 
     <div class="goal">
-      <p class="cap">Para chegar a um milhão</p>
-      <p class="n" id="need">R$ 264 por mês</p>
-      <p id="needTxt">Começando aos 10 e indo até os 60.</p>
+      <p class="cap" id="t-toreach"></p>
+      <p class="n" id="need">—</p>
+      <p id="needTxt"></p>
     </div>
   </div>
 </div>
 
 <div class="panel">
-  <h2>O preço de esperar</h2>
-  <p class="sub">Quanto custa por mês chegar ao mesmo milhão, conforme a idade em que se começa. A linha destacada é a sua.</p>
+  <h2 id="t-waitT"></h2>
+  <p class="sub" id="t-waitS"></p>
   <div class="scroller">
     <table>
-      <thead><tr><th>Começa aos</th><th class="num">Por mês</th><th class="num">Quantas vezes mais</th></tr></thead>
+      <thead><tr><th id="t-thStart"></th><th class="num" id="t-thMonth"></th><th class="num" id="t-thTimes"></th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
@@ -193,29 +201,205 @@ tr.here td{background:var(--coin-soft);font-weight:700}
 </div>
 
 <div class="foot">
-  <p><strong>Por que a máquina não usa o número que o banco anuncia.</strong> Uma aplicação que rende 1,2% ao mês parece dar 15,4% ao ano — e com essa conta bastariam <b>R$ 9,36 por mês</b> para juntar um milhão em cinquenta anos. Só que esse milhão, lá na frente, compraria o que R$ 110 mil compram hoje. O número do banco não desconta a inflação nem o imposto; o desta máquina desconta os dois.</p>
-
-  <p><strong>Sobre o rendimento.</strong> O controle é a taxa <em>real</em> — o que rende acima da inflação. Por isso o valor que aparece já está em poder de compra de hoje: um milhão aqui compra o que um milhão compra hoje, não o que valeria daqui a cinquenta anos.</p>
-  <p><strong>Isto não é recomendação de investimento, e nada aqui indica onde aplicar dinheiro.</strong> A máquina existe para ilustrar uma única coisa: o efeito do tempo. As taxas são hipóteses que você mesmo escolhe nos controles — rendimento de verdade varia, alguns anos são negativos, e a decisão de onde pôr dinheiro é de adulto, com orientação de quem é habilitado para isso.</p>
-
-  <p style="margin-top:18px;padding-top:14px;border-top:2px solid var(--line)">Esta máquina faz parte do <strong>Meu Caixa</strong>, o aplicativo de entra-sai-sobra para crianças — que é <a href="/">gratuito</a> e continua sendo. Para quem vai conduzir a conversa, existe um <a href="/guia/">guia para os pais</a>: o que dizer em cada idade, cartões para imprimir e o combinado da mesada.</p>
+  <p id="f-bank"></p>
+  <p id="f-real"></p>
+  <p id="f-warn"></p>
+  <p style="margin-top:18px;padding-top:14px;border-top:2px solid var(--line)" id="f-app"></p>
+  <p style="margin-top:16px;padding-top:14px;border-top:2px solid var(--line)" id="f-credit"></p>
 </div>
 
-  <p style="margin-top:16px;padding-top:14px;border-top:2px solid var(--line)">
-    <strong>A Máquina do Milhão</strong> nasceu de uma apresentação criada para os cursos de
-    Aurelio de Bortoli, com design e ilustração originais de <strong>Fabio de Bortoli</strong>.</p>
 </div>
 
 <script>
 (function(){
   var el = function(id){ return document.getElementById(id); };
-  var S = "R$";
+
+  var T = {
+
+  pt:{ loc:"pt-BR", cur:"BRL", yrs:"anos",
+   eyebrow:"Meu Caixa · guia dos pais", title:"A Máquina do Milhão",
+   deck:"Quanto por mês, começando em que idade. Mexa nos controles e veja quem faz o trabalho pesado — você ou o tempo.",
+   warn:'Isto ilustra o efeito do tempo sobre o dinheiro. <strong>Não é recomendação de investimento</strong> e não indica onde aplicar.',
+   ini:"Começa aos", fim:"Vai até os", apo:"Guarda por mês", tax:"Rende ao ano, acima da inflação",
+   curCap:"Moeda — a conta é a mesma em qualquer uma",
+   chartAria:"Crescimento ao longo dos anos",
+   willHave:"Vai ter aos", youPut:"Você pôs", timePut:"O tempo pôs",
+   toReach:"Para chegar a um milhão", perMonth:"por mês",
+   needTxt:function(a0,a1,anos){ return "Começando aos "+a0+" e indo até os "+a1+", em "+anos+" anos."; },
+   nominal:function(p){ return "Equivale a mais ou menos <b>"+p+" ao mês</b> daqueles que os bancos anunciam, já tirando o imposto e uma inflação de 4,5%."; },
+   waitT:"O preço de esperar",
+   waitS:"Quanto custa por mês chegar ao mesmo milhão, conforme a idade em que se começa. A linha destacada é a sua.",
+   thStart:"Começa aos", thMonth:"Por mês", thTimes:"Quantas vezes mais",
+   tnote:function(x){ return "Esperar dos 10 aos 50 multiplica o esforço por "+x+" vezes — para chegar exatamente no mesmo lugar."; },
+   fBank:'<strong>Por que a máquina não usa o número que o banco anuncia.</strong> Uma aplicação que rende 1,2% ao mês parece dar 15,4% ao ano — e com essa conta bastariam <b>R$ 9,36 por mês</b> para juntar um milhão em cinquenta anos. Só que esse milhão, lá na frente, compraria o que R$ 110 mil compram hoje. O número do banco não desconta a inflação nem o imposto; o desta máquina desconta os dois.',
+   fReal:'<strong>Sobre o rendimento.</strong> O controle é a taxa <em>real</em> — o que rende acima da inflação. Por isso o valor que aparece já está em poder de compra de hoje: um milhão aqui compra o que um milhão compra hoje, não o que valeria daqui a cinquenta anos.',
+   fWarn:'<strong>Isto não é recomendação de investimento, e nada aqui indica onde aplicar dinheiro.</strong> A máquina existe para ilustrar uma única coisa: o efeito do tempo. As taxas são hipóteses que você mesmo escolhe nos controles — rendimento de verdade varia, alguns anos são negativos, e a decisão de onde pôr dinheiro é de adulto, com orientação de quem é habilitado para isso.',
+   fApp:'Esta máquina faz parte do <strong>Meu Caixa</strong>, o aplicativo de entra-sai-sobra para crianças — que é <a href="/">gratuito</a> e continua sendo. Para quem vai conduzir a conversa, existe um <a href="/guia/">guia para os pais</a>: o que dizer em cada idade, cartões para imprimir e o combinado da mesada.',
+   fCredit:'<strong>A Máquina do Milhão</strong> nasceu de uma apresentação criada para os cursos de Aurelio de Bortoli, com design e ilustração originais de <strong>Fabio de Bortoli</strong>.'
+  },
+
+  en:{ loc:"en-US", cur:"USD", yrs:"years old",
+   eyebrow:"My Cash · guide for grown-ups", title:"The Million Machine",
+   deck:"How much a month, starting at what age. Move the controls and see who does the heavy lifting — you or time.",
+   warn:'This illustrates what time does to money. <strong>It is not investment advice</strong> and it does not point to where to put your money.',
+   ini:"Starts at", fim:"Goes until", apo:"Saves a month", tax:"Yearly return, above inflation",
+   curCap:"Currency — the maths is the same in any of them",
+   chartAria:"Growth over the years",
+   willHave:"Will have at", youPut:"You put in", timePut:"Time put in",
+   toReach:"To reach a million", perMonth:"a month",
+   needTxt:function(a0,a1,anos){ return "Starting at "+a0+" and going until "+a1+", over "+anos+" years."; },
+   nominal:function(p){ return "That is roughly <b>"+p+" a month</b> of the kind banks advertise, already net of tax and of 4.5% inflation."; },
+   waitT:"The price of waiting",
+   waitS:"What the same million costs a month, depending on the age you start. The highlighted row is yours.",
+   thStart:"Starts at", thMonth:"A month", thTimes:"How many times more",
+   tnote:function(x){ return "Waiting from 10 to 50 multiplies the effort by "+x+" times — to end up in exactly the same place."; },
+   fBank:'<strong>Why this machine does not use the number the bank advertises.</strong> Something paying 1.2% a month looks like 15.4% a year — and with that maths only <b>9.36 a month</b> would build a million in fifty years. Except that million, that far ahead, would buy what 110 thousand buys today. The bank number takes out neither inflation nor tax; this machine takes out both.',
+   fReal:'<strong>About the return.</strong> The control is the <em>real</em> rate — what is earned above inflation. That is why the amount you see is already in today’s buying power: a million here buys what a million buys today, not what it would be worth in fifty years.',
+   fWarn:'<strong>This is not investment advice, and nothing here points to where to put money.</strong> The machine exists to illustrate one single thing: the effect of time. The rates are assumptions you choose yourself on the controls — real returns vary, some years are negative, and where to put money is a grown-up decision, taken with guidance from someone qualified to give it.',
+   fApp:'This machine is part of <strong>My Cash</strong>, the money-in, money-out, money-left app for children — which is <a href="/">free</a> and stays that way. The guide for grown-ups that goes with it is written in Portuguese.',
+   fCredit:'<strong>The Million Machine</strong> grew out of a presentation created for the courses of Aurelio de Bortoli, with original design and illustration by <strong>Fabio de Bortoli</strong>.'
+  },
+
+  "en-GB":{ loc:"en-GB", cur:"GBP", yrs:"years old",
+   eyebrow:"My Cash · guide for grown-ups", title:"The Million Machine",
+   deck:"How much a month, starting at what age. Move the controls and see who does the heavy lifting — you or time.",
+   warn:'This illustrates what time does to money. <strong>It is not investment advice</strong> and it does not point to where to put your money.',
+   ini:"Starts at", fim:"Goes until", apo:"Saves a month", tax:"Yearly return, above inflation",
+   curCap:"Currency — the maths is the same in any of them",
+   chartAria:"Growth over the years",
+   willHave:"Will have at", youPut:"You put in", timePut:"Time put in",
+   toReach:"To reach a million", perMonth:"a month",
+   needTxt:function(a0,a1,anos){ return "Starting at "+a0+" and going until "+a1+", over "+anos+" years."; },
+   nominal:function(p){ return "That is roughly <b>"+p+" a month</b> of the kind banks advertise, already net of tax and of 4.5% inflation."; },
+   waitT:"The price of waiting",
+   waitS:"What the same million costs a month, depending on the age you start. The highlighted row is yours.",
+   thStart:"Starts at", thMonth:"A month", thTimes:"How many times more",
+   tnote:function(x){ return "Waiting from 10 to 50 multiplies the effort by "+x+" times — to end up in exactly the same place."; },
+   fBank:'<strong>Why this machine does not use the number the bank advertises.</strong> Something paying 1.2% a month looks like 15.4% a year — and with that maths only <b>9.36 a month</b> would build a million in fifty years. Except that million, that far ahead, would buy what 110 thousand buys today. The bank number takes out neither inflation nor tax; this machine takes out both.',
+   fReal:'<strong>About the return.</strong> The control is the <em>real</em> rate — what is earned above inflation. That is why the amount you see is already in today’s buying power: a million here buys what a million buys today, not what it would be worth in fifty years.',
+   fWarn:'<strong>This is not investment advice, and nothing here points to where to put money.</strong> The machine exists to illustrate one single thing: the effect of time. The rates are assumptions you choose yourself on the controls — real returns vary, some years are negative, and where to put money is a grown-up decision, taken with guidance from someone qualified to give it.',
+   fApp:'This machine is part of <strong>My Cash</strong>, the money-in, money-out, money-left app for children — which is <a href="/">free</a> and stays that way. The guide for grown-ups that goes with it is written in Portuguese.',
+   fCredit:'<strong>The Million Machine</strong> grew out of a presentation created for the courses of Aurelio de Bortoli, with original design and illustration by <strong>Fabio de Bortoli</strong>.'
+  },
+
+  es:{ loc:"es-ES", cur:"EUR", yrs:"años",
+   eyebrow:"Mi Caja · guía para los padres", title:"La Máquina del Millón",
+   deck:"Cuánto al mes, empezando a qué edad. Mueve los controles y mira quién hace el trabajo pesado — tú o el tiempo.",
+   warn:'Esto ilustra lo que el tiempo le hace al dinero. <strong>No es una recomendación de inversión</strong> y no indica dónde poner el dinero.',
+   ini:"Empieza a los", fim:"Va hasta los", apo:"Guarda al mes", tax:"Rinde al año, por encima de la inflación",
+   curCap:"Moneda — la cuenta es la misma en cualquiera",
+   chartAria:"Crecimiento a lo largo de los años",
+   willHave:"Va a tener a los", youPut:"Tú pusiste", timePut:"El tiempo puso",
+   toReach:"Para llegar a un millón", perMonth:"al mes",
+   needTxt:function(a0,a1,anos){ return "Empezando a los "+a0+" y llegando hasta los "+a1+", en "+anos+" años."; },
+   nominal:function(p){ return "Equivale más o menos a <b>"+p+" al mes</b> de los que anuncian los bancos, ya descontando el impuesto y una inflación del 4,5%."; },
+   waitT:"El precio de esperar",
+   waitS:"Cuánto cuesta al mes llegar al mismo millón, según la edad en que se empieza. La fila destacada es la tuya.",
+   thStart:"Empieza a los", thMonth:"Al mes", thTimes:"Cuántas veces más",
+   tnote:function(x){ return "Esperar de los 10 a los 50 multiplica el esfuerzo por "+x+" veces — para llegar exactamente al mismo sitio."; },
+   fBank:'<strong>Por qué la máquina no usa el número que anuncia el banco.</strong> Algo que rinde 1,2% al mes parece dar 15,4% al año — y con esa cuenta bastarían <b>9,36 al mes</b> para juntar un millón en cincuenta años. Solo que ese millón, allá adelante, compraría lo que hoy compran 110 mil. El número del banco no descuenta ni la inflación ni el impuesto; el de esta máquina descuenta los dos.',
+   fReal:'<strong>Sobre el rendimiento.</strong> El control es la tasa <em>real</em> — lo que rinde por encima de la inflación. Por eso el valor que aparece ya está en poder de compra de hoy: un millón aquí compra lo que un millón compra hoy, no lo que valdría dentro de cincuenta años.',
+   fWarn:'<strong>Esto no es una recomendación de inversión, y nada aquí indica dónde poner el dinero.</strong> La máquina existe para ilustrar una sola cosa: el efecto del tiempo. Las tasas son hipótesis que tú mismo eliges en los controles — el rendimiento real varía, algunos años son negativos, y decidir dónde poner el dinero es cosa de adultos, con orientación de quien está habilitado para eso.',
+   fApp:'Esta máquina es parte de <strong>Mi Caja</strong>, la aplicación de entra-sale-queda para niños — que es <a href="/">gratuita</a> y lo sigue siendo. La guía para los padres que la acompaña está escrita en portugués.',
+   fCredit:'<strong>La Máquina del Millón</strong> nació de una presentación creada para los cursos de Aurelio de Bortoli, con diseño e ilustración originales de <strong>Fabio de Bortoli</strong>.'
+  },
+
+  it:{ loc:"it-IT", cur:"EUR", yrs:"anni",
+   eyebrow:"La Mia Cassa · guida per i genitori", title:"La Macchina del Milione",
+   deck:"Quanto al mese, cominciando a che età. Muovi i controlli e guarda chi fa il lavoro pesante — tu o il tempo.",
+   warn:'Questo illustra che cosa fa il tempo ai soldi. <strong>Non è una raccomandazione di investimento</strong> e non indica dove mettere i soldi.',
+   ini:"Comincia a", fim:"Va fino a", apo:"Mette da parte al mese", tax:"Rende all’anno, sopra l’inflazione",
+   curCap:"Valuta — il conto è lo stesso in tutte",
+   chartAria:"Crescita negli anni",
+   willHave:"Avrà a", youPut:"Ci hai messo tu", timePut:"Ci ha messo il tempo",
+   toReach:"Per arrivare a un milione", perMonth:"al mese",
+   needTxt:function(a0,a1,anos){ return "Cominciando a "+a0+" anni e andando fino a "+a1+", in "+anos+" anni."; },
+   nominal:function(p){ return "Equivale più o meno a <b>"+p+" al mese</b> di quelli che annunciano le banche, già tolte le tasse e un’inflazione del 4,5%."; },
+   waitT:"Il prezzo di aspettare",
+   waitS:"Quanto costa al mese arrivare allo stesso milione, secondo l’età in cui si comincia. La riga evidenziata è la tua.",
+   thStart:"Comincia a", thMonth:"Al mese", thTimes:"Quante volte in più",
+   tnote:function(x){ return "Aspettare dai 10 ai 50 moltiplica lo sforzo per "+x+" volte — per arrivare esattamente allo stesso punto."; },
+   fBank:'<strong>Perché la macchina non usa il numero che annuncia la banca.</strong> Qualcosa che rende l’1,2% al mese sembra dare il 15,4% all’anno — e con quel conto basterebbero <b>9,36 al mese</b> per mettere insieme un milione in cinquant’anni. Solo che quel milione, là avanti, comprerebbe quello che oggi comprano 110 mila. Il numero della banca non toglie né l’inflazione né le tasse; quello di questa macchina toglie tutti e due.',
+   fReal:'<strong>Sul rendimento.</strong> Il controllo è il tasso <em>reale</em> — quello che rende sopra l’inflazione. Per questo la cifra che appare è già in potere d’acquisto di oggi: un milione qui compra quello che un milione compra oggi, non quello che varrebbe fra cinquant’anni.',
+   fWarn:'<strong>Questa non è una raccomandazione di investimento, e niente qui indica dove mettere i soldi.</strong> La macchina esiste per illustrare una cosa sola: l’effetto del tempo. I tassi sono ipotesi che scegli tu stesso nei controlli — il rendimento vero varia, certi anni sono negativi, e decidere dove mettere i soldi è cosa da adulti, con la guida di chi è abilitato a darla.',
+   fApp:'Questa macchina fa parte de <strong>La Mia Cassa</strong>, l’app di entra-esce-avanza per bambini — che è <a href="/">gratuita</a> e resta così. La guida per i genitori che l’accompagna è scritta in portoghese.',
+   fCredit:'<strong>La Macchina del Milione</strong> è nata da una presentazione creata per i corsi di Aurelio de Bortoli, con design e illustrazione originali di <strong>Fabio de Bortoli</strong>.'
+  }
+
+  };
+
+  var CURS = [{c:"BRL",s:"R$"},{c:"USD",s:"US$"},{c:"EUR",s:"€"},{c:"GBP",s:"£"}];
+  var CURNAME = {
+    pt:{BRL:"real",USD:"dólar",EUR:"euro",GBP:"libra"},
+    en:{BRL:"real",USD:"dollar",EUR:"euro",GBP:"pound"},
+    "en-GB":{BRL:"real",USD:"dollar",EUR:"euro",GBP:"pound"},
+    es:{BRL:"real",USD:"dólar",EUR:"euro",GBP:"libra"},
+    it:{BRL:"real",USD:"dollaro",EUR:"euro",GBP:"sterlina"}
+  };
+
+  var LKEY="meucaixa.maquina.lang";
+  function pickLang(){
+    var q=(location.search.match(/[?&]lang=([^&]+)/)||[])[1];
+    if(q){ q=decodeURIComponent(q); if(T[q]) return q; if(T[q.toLowerCase()]) return q.toLowerCase(); }
+    try{ var sv=localStorage.getItem(LKEY); if(sv&&T[sv]) return sv; }catch(e){}
+    var n=(navigator.language||"pt").toLowerCase();
+    if(n.indexOf("it")===0) return "it";
+    if(n.indexOf("es")===0) return "es";
+    if(n.indexOf("pt")===0) return "pt";
+    if(n==="en-gb"||n==="en-ie"||n==="en-au"||n==="en-nz"||n==="en-za") return "en-GB";
+    if(n.indexOf("en")===0) return "en";
+    return "pt";
+  }
+
+  var L=pickLang(), t=T[L], CUR=t.cur;
   var ini=el('ini'), fim=el('fim'), apo=el('apo'), tax=el('tax');
 
+  function num(v,d){ return v.toLocaleString(t.loc,{minimumFractionDigits:d,maximumFractionDigits:d}); }
   function fmt(v){
-    var n = Math.round(v).toLocaleString('pt-BR');
-    return S + " " + n;
+    try{ return new Intl.NumberFormat(t.loc,{style:"currency",currency:CUR,maximumFractionDigits:0}).format(Math.round(v)); }
+    catch(e){ return Math.round(v).toLocaleString(t.loc); }
   }
+
+  function buildCurs(){
+    el('curs').innerHTML = CURS.map(function(x){
+      return '<button class="cur" data-c="'+x.c+'" aria-pressed="'+(x.c===CUR)+'">'+x.s+' '+CURNAME[L][x.c]+'</button>';
+    }).join('');
+  }
+
+  function applyLang(){
+    t=T[L];
+    document.documentElement.lang = t.loc;
+    document.title = t.title;
+    el('t-eyebrow').textContent=t.eyebrow;
+    el('t-h1').textContent=t.title;
+    el('t-deck').textContent=t.deck;
+    el('t-warn').innerHTML=t.warn;
+    el('t-ini').textContent=t.ini;
+    el('t-fim').textContent=t.fim;
+    el('t-apo').textContent=t.apo;
+    el('t-tax').textContent=t.tax;
+    el('t-cur').textContent=t.curCap;
+    el('t-willhave').textContent=t.willHave;
+    el('t-youput').textContent=t.youPut;
+    el('t-timeput').textContent=t.timePut;
+    el('t-toreach').textContent=t.toReach;
+    el('t-waitT').textContent=t.waitT;
+    el('t-waitS').textContent=t.waitS;
+    el('t-thStart').textContent=t.thStart;
+    el('t-thMonth').textContent=t.thMonth;
+    el('t-thTimes').textContent=t.thTimes;
+    el('chart').setAttribute('aria-label',t.chartAria);
+    el('f-bank').innerHTML=t.fBank;
+    el('f-real').innerHTML=t.fReal;
+    el('f-warn').innerHTML=t.fWarn;
+    el('f-app').innerHTML=t.fApp;
+    el('f-credit').innerHTML=t.fCredit;
+    [].forEach.call(document.querySelectorAll('.t-yrs'),function(x){ x.textContent=t.yrs; });
+    el('lang').value=L;
+    buildCurs();
+    draw();
+  }
+
   function pmtFor(fv, n, i){ return fv*i/(Math.pow(1+i,n)-1); }
   function fvOf(p, n, i){ return p*((Math.pow(1+i,n)-1)/i); }
 
@@ -227,8 +411,8 @@ tr.here td{background:var(--coin-soft);font-weight:700}
     var anos = a1-a0, n = anos*12;
 
     el('iniV').textContent=a0; el('fimV').textContent=a1; el('fimV2').textContent=a1;
-    el('apoV').textContent = S+" "+mensal.toLocaleString('pt-BR');
-    el('taxV').textContent = (taxaAA*100).toFixed(1).replace('.',',')+"%";
+    el('apoV').textContent = fmt(mensal);
+    el('taxV').textContent = num(taxaAA*100,1)+"%";
 
     var total=fvOf(mensal,n,i), posto=mensal*n, juros=total-posto;
     el('total').textContent=fmt(total);
@@ -240,18 +424,17 @@ tr.here td{background:var(--coin-soft);font-weight:700}
     // traduz a taxa real para o que o banco anuncia
     var infl=0.045, liq=(1+taxaAA)*(1+infl)-1, bruto=liq/0.85;
     var aoMes=(Math.pow(1+bruto,1/12)-1)*100;
-    el('nominal').innerHTML="Equivale a mais ou menos <b>"+aoMes.toFixed(2).replace('.',',')+
-      "% ao mês</b> daqueles que os bancos anunciam, já tirando o imposto e uma inflação de 4,5%.";
+    el('nominal').innerHTML=t.nominal(num(aoMes,2)+"%");
 
     var need=pmtFor(1e6,n,i);
-    el('need').textContent=fmt(need)+" por mês";
-    el('needTxt').textContent="Começando aos "+a0+" e indo até os "+a1+", em "+anos+" anos.";
+    el('need').textContent=fmt(need)+" "+t.perMonth;
+    el('needTxt').textContent=t.needTxt(a0,a1,anos);
 
     // grafico de area empilhada
     var W=640,H=220,P=6, pts=[], ptsTot=[];
     for(var y=0;y<=anos;y++){
-      var m=y*12, t=(m===0)?0:fvOf(mensal,m,i), c=mensal*m;
-      pts.push([P+(W-2*P)*y/anos, c]); ptsTot.push([P+(W-2*P)*y/anos, t]);
+      var m=y*12, tt=(m===0)?0:fvOf(mensal,m,i), c=mensal*m;
+      pts.push([P+(W-2*P)*y/anos, c]); ptsTot.push([P+(W-2*P)*y/anos, tt]);
     }
     var max=Math.max(total,1);
     function Y(v){ return H-P-(H-2*P)*(v/max); }
@@ -269,8 +452,8 @@ tr.here td{background:var(--coin-soft);font-weight:700}
       '<path d="'+path(ptsTot,true)+'" fill="'+mint+'" opacity=".9"/>'+
       '<path d="'+path(pts,true)+'" fill="'+coin+'"/>'+
       '<path d="'+path(ptsTot,false)+'" fill="none" stroke="'+edge+'" stroke-width="3"/>'+
-      '<text x="'+P+'" y="'+(H-P+0)+'" font-size="11" fill="'+edge+'" opacity=".6" dy="-4">'+a0+' anos</text>'+
-      '<text x="'+(W-P)+'" y="'+(H-P)+'" font-size="11" text-anchor="end" fill="'+edge+'" opacity=".6" dy="-4">'+a1+' anos</text>';
+      '<text x="'+P+'" y="'+(H-P+0)+'" font-size="11" fill="'+edge+'" opacity=".6" dy="-4">'+a0+'</text>'+
+      '<text x="'+(W-P)+'" y="'+(H-P)+'" font-size="11" text-anchor="end" fill="'+edge+'" opacity=".6" dy="-4">'+a1+'</text>';
 
     // tabela
     var base=null, rows="";
@@ -279,23 +462,28 @@ tr.here td{background:var(--coin-soft);font-weight:700}
       if(nn<=0){ return; }
       var p=pmtFor(1e6,nn,i);
       if(base===null) base=p;
-      rows+='<tr'+(idade===a0?' class="here"':'')+'><td>'+idade+' anos</td>'+
+      rows+='<tr'+(idade===a0?' class="here"':'')+'><td>'+idade+' '+t.yrs+'</td>'+
             '<td class="num">'+fmt(p)+'</td>'+
-            '<td class="num">'+(p/base).toFixed(1).replace('.',',')+'×</td></tr>';
+            '<td class="num">'+num(p/base,1)+'×</td></tr>';
     });
     el('tbody').innerHTML=rows;
     var p10=pmtFor(1e6,(a1-10)*12,i), p50=pmtFor(1e6,Math.max(12,(a1-50)*12),i);
-    el('tnote').textContent="Esperar dos 10 aos 50 multiplica o esforço por "+Math.round(p50/p10)+
-      " vezes — para chegar exatamente no mesmo lugar.";
+    el('tnote').textContent=t.tnote(Math.round(p50/p10));
   }
 
   [ini,fim,apo,tax].forEach(function(c){ c.addEventListener('input',draw); });
   el('curs').addEventListener('click',function(e){
     var b=e.target.closest('.cur'); if(!b) return;
     [].forEach.call(this.querySelectorAll('.cur'),function(x){ x.setAttribute('aria-pressed','false'); });
-    b.setAttribute('aria-pressed','true'); S=b.dataset.s; draw();
+    b.setAttribute('aria-pressed','true'); CUR=b.dataset.c; draw();
   });
-  draw();
+  el('lang').addEventListener('change',function(){
+    L=this.value; CUR=T[L].cur;
+    try{ localStorage.setItem(LKEY,L); }catch(e){}
+    applyLang();
+  });
+
+  applyLang();
 })();
 </script>
 
