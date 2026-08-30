@@ -405,7 +405,8 @@ header.top{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap
     <div class="picks">
       <select class="voicesel" id="langSel" aria-label="Idioma / Language / Lingua">
         <option value="pt">🇧🇷 Português</option>
-        <option value="en">🇺🇸 English</option>
+        <option value="en">🇺🇸 English (US)</option>
+        <option value="en-GB">🇬🇧 English (UK)</option>
         <option value="es">🇪🇸 Español</option>
         <option value="it">🇮🇹 Italiano</option>
       </select>
@@ -1041,6 +1042,114 @@ it:{
  demoNotes:["dalla mamma","a scuola","skin nuova","ho lavato l'auto","","nonna","con gli amici","quaderno","vecchi pattini","premietto per Thor","raccolta per il canile"],
  pwa:{install:"📲 Installa sul dispositivo",ios:"Su iPhone: tocca Condividi ⬆️ e poi “Aggiungi a Home” — l’app avrà un’icona e si aprirà a schermo intero.",done:"Installata! Cerca il maialino nella schermata 🐷"},
  demoGoal:"Bici nuova"
+},
+
+"en-GB":{
+ locale:"en-GB", speech:"en-GB", appName:"My Cash",
+ mode:{kids:"🧒 Up to 10",teen:"😎 11 to 16"},
+ flow:{start:"I started the month with","in":"+ Came in","out":"− Went out",end:"= I ended with"},
+ copy:{
+  mirim:{sub:"where your money goes",balLabel:"What you have right now","in":"Came in!","out":"Spent!",
+   sheetIn:"💰 Money came in",sheetOut:"🛒 I spent money",confirmIn:"Put it in my cash",confirmOut:"Write down the spending",
+   goalSub:"Something you really want. Saving a little at a time gets you there.",
+   chartSub:"Green is what came in. Red is what went out.",hint:"Pick a sticker and type the amount.",
+   moods:{zero:"Let's go! Write down your first coin 👇",good:"Yay! You had money left this month 🎉",
+    ok:"Almost even. Careful with the sweets 🍬",bad:"Oops! More went out than came in 😬"}},
+  teen:{sub:"take charge of your money",balLabel:"Available balance","in":"Income","out":"Spent",
+   sheetIn:"💰 Log income",sheetOut:"🛒 Log spending",confirmIn:"Log income",confirmOut:"Log spending",
+   goalSub:"Set what you want to buy and track how close you are.",
+   chartSub:"Compare what came in and what went out each week.",hint:"Pick the category and type the amount.",
+   moods:{zero:"Start by logging your first income 👇",good:"Nice! You finished the month in the black 🎉",
+    ok:"Razor thin: income and spending are almost equal.",bad:"Heads up: you spent more than you got 😬"}}},
+ jars:{title:"My jars",hint:"Tap a jar to see what it is for 👆",
+  sub:function(p){return "Every bit of money that comes in splits by itself: "+p.gastar+"% spend, "+p.guardar+"% save, "+p.doar+"% give."},
+  change:"⚙️ Change the split",close:"✖️ Close the split",save:"Save split",
+  pctGastar:"Percentage for the Spend jar",pctGuardar:"Percentage for the Save jar",pctDoar:"Percentage for the Give jar",
+  sum:function(n){return n===100?"adds up to 100% ✅":"adds up to "+n+"% — it must be 100%"},
+  needs100:"The three parts must add up to 100% 🧮",saved:"New split saved 🫙 (applies to what comes in next)",
+  toggleOn:"🫙 Jars: on",toggleOff:"🫙 Jars: off",onToast:"Jars on 🫙",offToast:"Jars off",
+  names:{gastar:"Spend",guardar:"Save",doar:"Give"},
+  smalls:{gastar:"for everyday",guardar:"yours forever",doar:"to help someone"},
+  talk:{
+   gastar:{ic:"🛍️",title:"Spend is your money for right now",body:function(p){return "That "+p.gastar+"% is for everyday life: snacks, games, the cinema, those sweets. It was set aside for exactly this, so spend it guilt free."}},
+   guardar:{ic:"🌟",title:"A part of all you earn is yours to keep",body:function(p){
+     var b="This is the golden rule: save at least 10% of everything that comes in. That part is not for spending — it is yours forever. ";
+     var l="And when it sits somewhere truly separate, like a money box you cannot open or a savings account you open with a grown-up, you learn the hardest trick of all: leaving money alone so it can grow.";
+     return b+(p.guardar>=10?"Right now "+p.guardar+"% of what you earn comes straight here, before any spending. ":"Right now only "+p.guardar+"% lands here. Bump it up to 10% under “Change the split”. ")+l}},
+   doar:{ic:"❤️",title:"Give is money that turns into help",body:function(p){return "That "+p.doar+"% is for helping someone: a charity collection, an animal shelter, a friend in trouble. Money is for that too — and it takes practice."}}}},
+ work:{title:"Money can work for you",sub:"You work for money. But money you saved can also work for you — while you do nothing at all.",
+  s1t:"You save it",s1p:"At least 10% of everything that comes in stays in the Save jar, and you do not touch it.",
+  s2t:"It sits somewhere safe",s2p:"A money box that does not open, or a savings account you set up with a grown-up at home.",
+  s3t:"It pays you back",s3p:"Whoever looks after your money pays a little for keeping it there. While you play, study and sleep, that little bit keeps adding up.",
+  warnT:"And it works the other way round",warnP:"Whoever borrows money pays that little bit instead of earning it: the debt grows on its own, also while you sleep. That is why the order is always save first, spend after — and never owe.",
+  calcT:"The habit maths",calcA:"If I save",calcB:"a month, for",calcC:"months, I will have",
+  calcNote:"Just the sum of what you put away, with no interest at all. The habit alone does this."},
+ nav:{prev:"Previous month",next:"Next month"},
+ chart:{title:"Week by week","in":"Came in","out":"Went out",week:"Wk",
+  top:function(c,v){return "Biggest spending: "+c+" ("+v+")"}},
+ list:{empty1:"Nothing written down this month yet.",empty2:"Use the big buttons up there!",today:"today",
+  del:"Delete",deleted:"Deleted 🗑️",inWord:"came in",outWord:"went out"},
+ goal:{title:"My goal",none:"No goal yet",namePh:"e.g. new bike",pricePh:"Price",save:"Save goal",
+  emoji:"Goal emoji",nameAria:"Goal name",priceAria:"Goal price",
+  msgNone:"Write below what you want to buy.",need:"Write the name and the price of the goal 🎯",savedToast:"Goal saved! ",
+  won:"🏆 You did it! You already have the goal amount.",wonJar:"🏆 You did it! The Save jar has the goal amount.",
+  jarHave:function(v){return "Your Save jar holds "+v+". "},
+  left:function(f,w,n){return f+" to go. Saving "+w+" a week, you get there in about "+n+" weeks."}},
+ medals:{title:"Medals",sub:"Every good move you make turns into a medal.",
+  items:[["First entry","Logged 1 move"],["Full notebook","10 moves logged"],
+   ["Getting the hang of it","Logged on 3 different days"],["I have a plan","Created a goal"],
+   ["Money left!","Finished the month in the black"],["Goal reached","Saved up the goal amount"],["Big heart","Used the Give jar"]]},
+ video:{title:"Video lesson: cash flow in 1 minute",sub:"Hit play. The 🔊 button turns narration on, and next to it you can switch and test the voice.",
+  play:"Play video",pause:"Pause video",voice:"Choose the narration voice",test:"🎧 Test",
+  narrOn:"🔊 Narration",narrOff:"🔇 Narration",scene:"Scene ",
+  testPhrase:"Hi! I am the one who will tell you how your money is doing. What came in, what went out, and what is left.",
+  scenes:[
+   {h:"Where your money goes",p:"Cash flow is just this: where money comes from and where it goes.",say:"Cash flow is the path your money takes: where it comes from and where it goes."},
+   {h:"Income = money that ARRIVES",p:"Pocket money, a gift from granny, helping at home, selling that old toy.",say:"Income is money that arrives: pocket money, a gift, a job you did at home."},
+   {h:"Spending = money that LEAVES",p:"Snacks, games, the cinema, sweets. Anything you buy is spending.",say:"Spending is money that leaves when you buy something."},
+   {h:"Balance is this little sum",p:"If the balance is positive, money is left. If it is negative, you spent more than you had.",say:"The balance is the sum: what you had, plus what came in, minus what went out."},
+   {h:"Three jars for every income",p:"Some to spend now, some to help someone — and at least 10% that becomes yours forever.",say:"Every time money comes in, split it into three jars: spend, save and give. And remember the golden rule: a part of all you earn is yours to keep. At least 10 percent."},
+   {h:"Your money can work for you",p:"Kept somewhere safe, it grows on its own. You sleep, it keeps working.",say:"Money you save can work for you. While you play and sleep, it keeps growing on its own."},
+   {h:"Money left? Turn it into a goal",p:"Saving a little every week is how you get the big thing.",say:"When you let a little be left over every month, your goal fills up until you reach it."},
+   {h:"The secret: write it down right away",p:"Spent? Write it. Got money? Write it. Then you run your money — not the other way round.",say:"Write it down right away, always. Whoever writes it down knows where the money went."}]},
+ parents:{title:"For grown-ups",demo:"🎲 Load example",wipe:"🧽 Erase everything",
+  demoToast:"Example loaded 🎲",wipeToast:"All clear 🧽",wipeConfirm:"Erase every entry and the goal on this device?",
+  bullets:["No investments, no products, no bank: just money in, money out, money left.",
+   "Data stays on this device only (in the browser). Nothing is sent anywhere.",
+   "The Save jar gets much stronger when it is real: a money box that does not open, or a savings account opened together with you. The deal is not to touch it — that is where the learning happens.",
+   "The narration voice comes from the device. On iPhone and Mac, much better voices appear after downloading them in Settings → Accessibility → Spoken Content → Voices.",
+   "The jars teach separating before spending — adjust the percentages by age.",
+   "Agree on a fixed pocket money day — the child logs it and you check it together.",
+   "Let the child make mistakes with small amounts. That is how it sinks in."]},
+ allow:{stateOff:"Automatic pocket money: off",everyDay:"📅 every",value:"Pocket money amount",day:"Day of the month",
+  stateOn:function(v,d){return "Automatic pocket money: "+v+" on day "+d},
+  save:"Turn pocket money on",saveChanges:"Save changes",off:"Turn off",offToast:"Automatic pocket money off",
+  badVal:"Type the pocket money amount 💰",badDay:"Pick a day between 1 and 28 📅",
+  onToast:function(v,d){return "Pocket money on: "+v+" on day "+d},
+  paid:function(v){return "Pocket money of "+v+" is in 💰"},fell:function(v){return "Your pocket money of "+v+" landed today! 💰🎉"},
+  auto:"automatic pocket money"},
+ sheet:{notePh:"Note (optional): from whom? what for?",pickJar:"Which jar did it come out of?",
+  split:"It will split like this: ",needCat:"Pick a sticker first 👆",needVal:"Type an amount above zero 🔢",
+  toastIn:function(v){return v+" came in 🎉"},toastOut:function(v){return "Logged: "+v+" 📝"},
+  jarNeg:function(n,e){return "Careful! The "+n+" jar went negative "+e}},
+ report:{btn:"Report",open:"Monthly report",print:"🖨️ Print or save as PDF",close:"Close",
+  made:function(d,n){return "report made on "+d+" · "+n+" entries"},
+  jarsT:"🫙 Jars at the end of the month",rate:function(n){return "Saved "+n+"% of what came in"},
+  ruleBody:"A part of all you earn is yours to keep — at least 10%.",
+  ruleOk:" Rule met this month.",ruleBad:" This month it came in under that.",
+  goalT:function(n){return "🎯 Goal: "+n},pctOf:function(p,v){return p+"% of "+v},
+  whereT:"🛒 Where the money went",allT:"📒 Everything logged",
+  thDay:"Day",thWhat:"What",thNote:"Note",thJar:"Jar",thValue:"Amount",
+  medalsT:"🏅 Medals earned",signMe:"My signature",signAdult:"Grown-up signature",
+  none:"No entries this month.",
+  printHint:"Printing did not open here — use the browser menu → Print."},
+ cats:{mesada:"Pocket money",presente:"Gift",tarefa:"Helped at home",vendi:"Sold something",premio:"Prize",outro_in:"Other",
+  freela:"Odd job",devolucao:"Refund",lanche:"Snack",doces:"Sweets",jogos:"Games",cinema:"Cinema",
+  brinquedo:"Toy",escola:"School",presenteei:"Gave a gift",pet:"Pet",outro_out:"Other",apps:"Apps/streaming",
+  roupa:"Clothes",transporte:"Transport",role:"Day out",beleza:"Haircut"},
+ demoNotes:["from mum","at school","new skin","washed the car","","granny","with friends","notebook","old skates","treat for Thor","charity collection"],
+ pwa:{install:"📲 Install on this device",ios:"On iPhone: tap Share ⬆️ and then “Add to Home Screen” — the app gets an icon and opens full screen.",done:"Installed! Look for the piggy on your home screen 🐷"},
+ demoGoal:"New bike"
 }
 
 };
@@ -1049,8 +1158,17 @@ I18N.pt.video.eq=["tinha","entrou","saiu","saldo"];
 I18N.en.video.eq=["had","came in","went out","balance"];
 I18N.es.video.eq=["tenía","entró","salió","saldo"];
 I18N.it.video.eq=["avevo","entrato","uscito","saldo"];
+I18N["en-GB"].video.eq=["had","came in","went out","balance"];
 
-var LANGCURR={pt:"BRL",en:"USD",es:"EUR",it:"EUR"};
+/* linha do rodape da area dos adultos: a Maquina em todos os idiomas, o guia so em portugues */
+I18N.pt.guia='A <a href="/maquina/?lang=pt">Máquina do Milhão</a> mostra o que o tempo faz com o dinheiro — é aberta e gratuita. '+
+  'E existe um <a href="/guia/">guia para os pais</a>: o que dizer em cada idade, cartões para imprimir e o combinado da mesada. O aplicativo continua gratuito.';
+I18N.en.guia='The <a href="/maquina/?lang=en">Million Machine</a> shows what time does to money — free and open to everyone. The app stays free.';
+I18N["en-GB"].guia='The <a href="/maquina/?lang=en-GB">Million Machine</a> shows what time does to money — free and open to everyone. The app stays free.';
+I18N.es.guia='La <a href="/maquina/?lang=es">Máquina del Millón</a> muestra lo que el tiempo le hace al dinero — es abierta y gratuita. La aplicación sigue siendo gratis.';
+I18N.it.guia='La <a href="/maquina/?lang=it">Macchina del Milione</a> mostra che cosa fa il tempo ai soldi — è aperta e gratuita. L’app resta gratuita.';
+
+var LANGCURR={pt:"BRL",en:"USD",es:"EUR",it:"EUR","en-GB":"GBP"};
 var KEY="meucaixa.kids.v1";
 var $=function(s){return document.querySelector(s)};
 var JARKEYS=["gastar","guardar","doar"];
@@ -1066,6 +1184,8 @@ function guessLang(){
   if(n.indexOf("it")===0) return "it";
   if(n.indexOf("es")===0) return "es";
   if(n.indexOf("pt")===0) return "pt";
+  /* ingles das ilhas e do hemisferio sul vai para o britanico */
+  if(n==="en-gb"||n==="en-ie"||n==="en-au"||n==="en-nz"||n==="en-za") return "en-GB";
   if(n.indexOf("en")===0) return "en";
   return "pt";
 }
@@ -1076,7 +1196,7 @@ function load(){
           month:monthKey(new Date()),jars:defaultJars(),allowance:defaultAllowance(),voice:null};
 }
 var state=load();
-if(!state.lang) state.lang=guessLang();
+if(!state.lang||!I18N[state.lang]) state.lang=guessLang();
 if(!state.currency) state.currency=LANGCURR[state.lang];
 if(!state.month) state.month=monthKey(new Date());
 if(!state.jars) state.jars=defaultJars();
@@ -1181,12 +1301,7 @@ function applyStatic(){
   $("#pctToggle").textContent=$("#pctForm").hidden?t("jars.change"):t("jars.close");
   $("#parentsList").innerHTML=t("parents.bullets").map(function(b){return "<li>"+esc(b)+"</li>"}).join("");
   var gl=$("#guiaLink");
-  if(state.lang==="pt"){
-    gl.hidden=false;
-    gl.innerHTML='A <a href="/maquina/">Máquina do Milhão</a> mostra o que o tempo faz com o dinheiro — é aberta e gratuita. '+
-      'E existe um <a href="/guia/">guia para os pais</a>: o que dizer em cada idade, cartões para imprimir e o '+
-      'combinado da mesada. O aplicativo continua gratuito.';
-  } else { gl.hidden=true; gl.innerHTML=""; }
+  gl.hidden=false; gl.innerHTML=t("guia");
   $("#soundBtn").textContent=sound?t("video.narrOn"):t("video.narrOff");
   $("#voiceTest").textContent=t("video.test");
   $("#langSel").value=state.lang; $("#currSel").value=state.currency;
