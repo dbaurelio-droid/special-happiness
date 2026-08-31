@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Obrigado! O guia é seu — Meu Caixa</title>
+<meta name="description" content="Sua compra do guia dos pais foi concluída. Veja o que acontece agora e onde voltar quando quiser imprimir os cartões e o combinado da mesada.">
+<meta name="theme-color" content="#F3F6FF">
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="icon" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --bg:#F3F6FF; --surface:#FFFFFF; --surface-2:#F6F8FF;
+  --ink:#151B33; --ink-soft:#5B6588; --line:#DCE3F7; --edge:#1B2340;
+  --grape:#6C4CF1; --grape-soft:#EDE8FF;
+  --coin:#FFC93C; --coin-soft:#FFF4D4;
+  --mint:#0FA97C; --mint-soft:#DDF6EE;
+  --shadow:rgba(27,35,64,.16);
+  --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --f-body:Nunito,"Segoe UI",system-ui,sans-serif;
+  --f-num:"DM Mono","SFMono-Regular",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101528; --surface:#1A2138; --surface-2:#222B48;
+    --ink:#F0F4FF; --ink-soft:#9FA9CC; --line:#2E3A5E; --edge:#3B4877;
+    --grape:#9C86FF; --grape-soft:#2A2350;
+    --coin:#FFD35C; --coin-soft:#3B3116;
+    --mint:#25D3A0; --mint-soft:#123A31;
+    --shadow:rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101528; --surface:#1A2138; --surface-2:#222B48;
+  --ink:#F0F4FF; --ink-soft:#9FA9CC; --line:#2E3A5E; --edge:#3B4877;
+  --grape:#9C86FF; --grape-soft:#2A2350;
+  --coin:#FFD35C; --coin-soft:#3B3116;
+  --mint:#25D3A0; --mint-soft:#123A31;
+  --shadow:rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.62}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 72px}
+p{margin:0 0 16px;max-width:62ch}
+a{color:var(--grape)}
+
+.eyebrow{font-family:var(--f-num);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+h1{font-family:var(--f-display);font-size:clamp(32px,6.4vw,50px);line-height:1.06;margin:10px 0 14px;text-wrap:balance;max-width:20ch}
+.deck{font-size:19px;color:var(--ink-soft);max-width:54ch}
+h2{font-family:var(--f-display);font-size:clamp(24px,4.2vw,31px);line-height:1.15;margin:46px 0 14px;text-wrap:balance}
+
+/* o porquinho pulando */
+.hero{display:grid;grid-template-columns:1fr 190px;gap:30px;align-items:center;margin:26px 0 6px}
+@media (max-width:680px){.hero{grid-template-columns:1fr;gap:18px}
+  .plate{max-width:190px;margin:0 auto}}
+.plate{background:var(--surface-2);border:3px solid var(--edge);border-radius:22px;box-shadow:0 5px 0 var(--shadow);padding:18px}
+.pig{width:100%;height:auto;display:block;animation:hop 1.9s cubic-bezier(.3,.7,.4,1) infinite}
+.pig .snout{animation:sniff 3.4s ease-in-out infinite}
+@keyframes hop{
+  0%,58%,100%{transform:translateY(0) rotate(0)}
+  68%{transform:translateY(-13%) rotate(-3deg)}
+  80%{transform:translateY(-4%) rotate(1deg)}
+  88%{transform:translateY(0) rotate(0)}
+}
+@keyframes sniff{0%,88%,100%{transform:translateX(0)}92%{transform:translateX(2px)}96%{transform:translateX(0)}}
+@media (prefers-reduced-motion:reduce){.pig,.pig .snout{animation:none}}
+
+/* os tres passos */
+.steps{list-style:none;counter-reset:s;padding:0;margin:22px 0 0;display:grid;gap:16px}
+.steps li{counter-increment:s;background:var(--surface);border:3px solid var(--edge);border-radius:20px;
+  box-shadow:0 5px 0 var(--shadow);padding:18px 22px 18px 20px;
+  display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-size:24px;line-height:38px;text-align:center;
+  width:38px;height:38px;border-radius:50%;background:var(--coin);color:#1B2340;border:3px solid var(--edge)}
+.steps h3{font-family:var(--f-display);font-size:20px;margin:4px 0 6px}
+.steps p{margin:0;font-size:15.5px;color:var(--ink-soft);max-width:none}
+.steps p + p{margin-top:8px}
+.steps b{color:var(--ink)}
+
+/* a caixa do endereco para guardar */
+.keep{background:var(--surface);border:3px solid var(--edge);border-radius:22px;
+  box-shadow:0 5px 0 var(--shadow);padding:24px 26px;margin:26px 0}
+.keep .cap{font-family:var(--f-num);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+.addr{display:block;font-family:var(--f-num);font-size:clamp(15px,3.4vw,21px);font-weight:500;
+  background:var(--coin-soft);border:3px solid var(--edge);border-radius:14px;padding:14px 16px;
+  color:var(--ink);text-decoration:none;line-height:1.35}
+.addr span{display:inline-block}
+.addr:hover{background:var(--coin)}
+.addr:focus-visible{outline:3px solid var(--grape);outline-offset:4px}
+.keep p{margin:14px 0 0;font-size:15.5px;color:var(--ink-soft);max-width:58ch}
+.keep b{color:var(--ink)}
+
+/* se nao aparecer nada */
+.help{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:14px}
+.help li{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start}
+.help .dot{width:13px;height:13px;margin-top:8px;border-radius:4px;background:var(--coin);border:2px solid var(--edge)}
+.help p{margin:0;font-size:15.5px;color:var(--ink-soft);max-width:none}
+.help b{color:var(--ink)}
+
+blockquote{margin:22px 0;padding:16px 20px;border-left:5px solid var(--coin);
+  background:var(--coin-soft);border-radius:0 14px 14px 0;font-size:17px}
+blockquote p:last-child{margin:0}
+.lead{font-size:20px;color:var(--ink)}
+
+.foot{margin-top:52px;padding-top:22px;border-top:3px solid var(--edge);font-size:14.5px;color:var(--ink-soft)}
+.foot p{max-width:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Meu Caixa · guia dos pais</p>
+  <h1>Obrigado! O guia é seu.</h1>
+  <p class="deck">O pagamento foi aprovado. Falta um minuto de cadastro e os arquivos são seus para sempre — inclusive para imprimir depois.</p>
+</header>
+
+<div class="hero">
+  <div>
+    <p class="lead">Você acabou de comprar uma conversa.</p>
+    <p>Não é um curso para assistir nem um aplicativo para configurar. São quinze minutos por mês com uma criança, e o guia diz o que falar em cada idade. O aplicativo continua gratuito, como sempre foi.</p>
+  </div>
+  <div class="plate">
+    <svg class="pig" viewBox="0 0 64 64" aria-hidden="true">
+      <ellipse cx="32" cy="36" rx="24" ry="19" fill="var(--grape)" stroke="var(--edge)" stroke-width="3"/>
+      <path d="M14 24 L12 12 L26 19 Z" fill="var(--grape)" stroke="var(--edge)" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="26" y="14" width="12" height="4" rx="2" fill="var(--coin)" stroke="var(--edge)" stroke-width="2.5"/>
+      <g class="snout"><ellipse cx="52" cy="36" rx="8" ry="7" fill="var(--coin)" stroke="var(--edge)" stroke-width="3"/>
+      <circle cx="50" cy="36" r="1.6" fill="var(--edge)"/><circle cx="55" cy="36" r="1.6" fill="var(--edge)"/></g>
+      <circle cx="38" cy="30" r="2.6" fill="var(--edge)"/>
+      <path d="M20 52 v5 M30 54 v4 M42 52 v5" stroke="var(--edge)" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<h2>O que acontece agora</h2>
+
+<ol class="steps">
+  <li>
+    <div>
+      <h3>Chega um e-mail</h3>
+      <p>O remetente é a <b>Kiwify</b>, que é quem cuida do pagamento e da entrega, e o assunto é <b>“Pagamento aprovado”</b>. Costuma chegar também uma mensagem no WhatsApp.</p>
+      <p>Se em alguns minutos não aparecer, olhe na lixeira e no spam — e procure por <b>Kiwify</b> na caixa de entrada.</p>
+    </div>
+  </li>
+  <li>
+    <div>
+      <h3>Você cria uma senha</h3>
+      <p>Dentro do e-mail tem um botão. Ao clicar, a Kiwify pede um <b>e-mail e uma senha</b>. Leva um minuto e é só desta vez — é assim que ela sabe que os arquivos são seus.</p>
+      <p>Use <b>o mesmo e-mail que você usou na compra</b>. Isso importa mais adiante.</p>
+    </div>
+  </li>
+  <li>
+    <div>
+      <h3>Os arquivos aparecem</h3>
+      <p>Na aula <b>“Comece por aqui”</b> estão os três, para baixar e imprimir quando quiser: <b>o guia dos pais</b> (29 páginas), <b>os cartões</b> (5 folhas) e <b>o combinado da mesada</b> (1 folha).</p>
+    </div>
+  </li>
+</ol>
+
+<h2>Guarde este endereço</h2>
+
+<p>Você não precisa baixar tudo hoje. Os arquivos ficam guardados na sua conta e você volta quando quiser — para imprimir os cartões numa tarde de domingo, ou o combinado da mesada no dia em que for combinar de verdade com a criança.</p>
+
+<div class="keep">
+  <p class="cap">Onde voltar, sempre</p>
+  <a class="addr" href="https://dashboard.kiwify.com.br/courses"><span>dashboard.kiwify.com.br</span><span>/courses</span></a>
+  <p>Entre com <b>o mesmo e-mail da compra</b> e a senha que você criou. O guia estará lá, com todos os arquivos.</p>
+</div>
+
+<blockquote>
+  <p>Uma coisa que confunde: se você também <b>vende</b> alguma coisa pela Kiwify, ela abre no painel de vendedor, e as suas compras não aparecem lá. Nesse caso clique na bolinha do seu perfil, no canto superior direito, e escolha <b>“Mudar para painel do aluno”</b>.</p>
+</blockquote>
+
+<h2>Se não aparecer nada</h2>
+
+<ul class="help">
+  <li><span class="dot"></span><p><b>Confira o e-mail que está logado.</b> Clique na bolinha do perfil, no canto superior direito. Se não for o e-mail da compra, saia e entre de novo com o certo — é o motivo mais comum de a tela aparecer vazia.</p></li>
+  <li><span class="dot"></span><p><b>Esqueceu a senha?</b> Na tela de entrada existe “Esqueci a senha”. A Kiwify manda um acesso novo por e-mail.</p></li>
+  <li><span class="dot"></span><p><b>O e-mail da compra não vence.</b> Ele fica na sua caixa de entrada e o botão dele continua funcionando. Procurar por <b>Kiwify</b> resolve quase tudo.</p></li>
+  <li><span class="dot"></span><p><b>Se nada disso resolver, escreva.</b> Do outro lado tem gente, não robô: <a href="mailto:db.brasil.db@gmail.com">db.brasil.db@gmail.com</a>. Conte o que aconteceu e <b>diga qual e-mail você usou na compra</b> — com isso a gente acha o seu acesso rápido.</p></li>
+</ul>
+
+<h2>Enquanto o e-mail não chega</h2>
+
+<p>O aplicativo <a href="/">Meu Caixa</a> é gratuito e não pede cadastro — dá para abrir agora e deixar pronto para a criança. E a <a href="/maquina/">Máquina do Milhão</a> mostra, em números, o que o tempo faz com o dinheiro guardado. As duas coisas são abertas, para sempre.</p>
+
+<div class="foot">
+  <p>Sete dias de garantia, valor integral, sem perguntas — é só pedir dentro do prazo. O aplicativo continua gratuito, sem cadastro, sem nuvem e sem propaganda.</p>
+</div>
+
+</div>
+</body>
+</html>
