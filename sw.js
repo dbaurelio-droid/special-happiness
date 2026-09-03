@@ -1,6 +1,6 @@
-// Meu Caixa - cache do app para funcionar sem internet.
+// Meus Potinhos - cache do app para funcionar sem internet.
 // Troque a versao sempre que o index.html mudar.
-var VERSAO = "meu-caixa-v3";
+var VERSAO = "meus-potinhos-v1";
 var ARQUIVOS = [
   "./", "./index.html", "./manifest.webmanifest"
 ];
