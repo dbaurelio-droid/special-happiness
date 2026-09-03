@@ -1,259 +1,76 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Conversas sobre Dinheiro — guia dos pais</title>
-<meta name="description" content="Um guia de quinze minutos por mês para ensinar mesada, poupança e escolha a crianças de 4 a 16 anos. Acompanha o aplicativo Meu Caixa, que é gratuito.">
-<meta name="theme-color" content="#F3F6FF">
+Meus Potinhos · guia dos pais
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://meucaixa.eco.br/guia/">
-<meta property="og:title" content="O que dizer quando ele gastar tudo no dia dez">
-<meta property="og:description" content="Um guia de quinze minutos por mês para ensinar mesada, poupança e escolha — dos quatro aos dezesseis anos.">
-<meta property="og:image" content="https://meucaixa.eco.br/guia/capa.png">
-<meta property="og:image:width" content="1280">
-<meta property="og:image:height" content="720">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
+O que dizer quando ele gastar tudo no dia dez
+Um guia de quinze minutos por mês para ensinar mesada, poupança e escolha — dos quatro aos dezesseis anos. Acompanha o aplicativo Meus Potinhos, que é gratuito.
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap">
+Você dá mesada e torce para dar certo.
 
-<style>
-:root{
-  --bg:#F3F6FF; --surface:#FFFFFF; --surface-2:#F6F8FF;
-  --ink:#151B33; --ink-soft:#5B6588; --line:#DCE3F7; --edge:#1B2340;
-  --grape:#6C4CF1; --grape-soft:#EDE8FF;
-  --coin:#FFC93C; --coin-soft:#FFF4D4;
-  --mint:#0FA97C; --mint-soft:#DDF6EE;
-  --shadow:rgba(27,35,64,.16);
-  --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
-  --f-body:Nunito,"Segoe UI",system-ui,sans-serif;
-  --f-num:"DM Mono","SFMono-Regular",ui-monospace,monospace;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#101528; --surface:#1A2138; --surface-2:#222B48;
-    --ink:#F0F4FF; --ink-soft:#9FA9CC; --line:#2E3A5E; --edge:#3B4877;
-    --grape:#9C86FF; --grape-soft:#2A2350;
-    --coin:#FFD35C; --coin-soft:#3B3116;
-    --mint:#25D3A0; --mint-soft:#123A31;
-    --shadow:rgba(0,0,0,.5);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#101528; --surface:#1A2138; --surface-2:#222B48;
-  --ink:#F0F4FF; --ink-soft:#9FA9CC; --line:#2E3A5E; --edge:#3B4877;
-  --grape:#9C86FF; --grape-soft:#2A2350;
-  --coin:#FFD35C; --coin-soft:#3B3116;
-  --mint:#25D3A0; --mint-soft:#123A31;
-  --shadow:rgba(0,0,0,.5);
-}
+Ninguém te ensinou o que falar. Não te ensinaram na escola, não te ensinaram em casa, e a escola do seu filho também não vai ensinar. Então a mesada vira um valor que cai todo mês e some — e a conversa que deveria acontecer nunca acontece, porque você não sabe por onde começar.
 
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.62}
-.wrap{max-width:760px;margin:0 auto;padding:32px 20px 72px}
-p{margin:0 0 16px;max-width:62ch}
+Por que os livros não resolveram
+Existe um clássico sobre dinheiro. Foi escrito em 1926, chama-se O Homem Mais Rico da Babilônia, e o conselho dele é o melhor que já se deu sobre finanças pessoais: guarde uma parte de tudo o que você ganha, sempre, antes de gastar.
 
-.eyebrow{font-family:var(--f-num);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin:0}
-h1{font-family:var(--f-display);font-size:clamp(32px,6.4vw,50px);line-height:1.06;margin:10px 0 14px;text-wrap:balance;max-width:20ch}
-.deck{font-size:19px;color:var(--ink-soft);max-width:54ch}
-h2{font-family:var(--f-display);font-size:clamp(24px,4.2vw,31px);line-height:1.15;margin:46px 0 14px;text-wrap:balance}
-h3{font-family:var(--f-display);font-size:20px;margin:0 0 4px}
+O problema é que quase ninguém chega até esse conselho. As histórias se passam na Babilônia de quatro mil anos atrás, os personagens se chamam Arkad e Bansir, e o texto imita o tom solene de fábula antiga.
 
-/* herói */
-.hero{display:grid;grid-template-columns:1fr 250px;gap:30px;align-items:center;margin:30px 0 6px}
-@media (max-width:680px){.hero{grid-template-columns:1fr;gap:22px}
-  .plate{max-width:220px;margin:0 auto}}
-.plate{background:#F6F8FF;border:3px solid #1B2340;border-radius:22px;box-shadow:0 5px 0 var(--shadow);padding:16px}
-.plate svg{width:100%;height:auto;display:block}
+Já dei esse livro de presente a um rapaz, no ano exato em que ele começou a trabalhar e a lidar com o próprio dinheiro. O momento perfeito. Ele não passou das primeiras páginas.
 
-/* caixa de compra */
-.buy{background:var(--surface);border:3px solid var(--edge);border-radius:22px;
-  box-shadow:0 5px 0 var(--shadow);padding:24px 26px;margin:30px 0}
-.price{font-family:var(--f-display);font-size:clamp(38px,7.5vw,54px);line-height:1;color:var(--mint);
-  font-variant-numeric:tabular-nums;margin:2px 0 2px}
-.price small{font-family:var(--f-body);font-size:16px;font-weight:600;color:var(--ink-soft);display:block;margin-top:8px}
-.cta{display:inline-block;margin:16px 0 0;padding:16px 34px;border-radius:999px;
-  background:var(--coin);color:#1B2340;border:3px solid var(--edge);box-shadow:0 4px 0 var(--shadow);
-  font-family:var(--f-display);font-size:21px;text-decoration:none;transition:transform .12s ease,box-shadow .12s ease}
-.cta:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--shadow)}
-.cta:focus-visible{outline:3px solid var(--grape);outline-offset:4px}
-.guarantee{margin:14px 0 0;font-size:15px;color:var(--ink-soft);max-width:52ch}
+Também vi uma gerente de banco — alguém que lida com dinheiro todo dia — devolver o livro dizendo que não entendeu o que as metáforas queriam dizer.
 
-/* listas do pacote */
-.pack{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:16px}
-.pack li{background:var(--surface-2);border-radius:16px;padding:16px 18px;border:2px solid var(--line)}
-.pack li p{margin:0;font-size:15.5px;color:var(--ink-soft);max-width:none}
-.facts{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:14px}
-.facts li{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start}
-.facts .dot{width:13px;height:13px;margin-top:8px;border-radius:4px;background:var(--coin);border:2px solid var(--edge)}
-.facts p{margin:0;font-size:15.5px;color:var(--ink-soft);max-width:none}
-.facts b{color:var(--ink)}
+O que envelheceu foi a embalagem. A ideia continua valendo.
 
-blockquote{margin:22px 0;padding:16px 20px;border-left:5px solid var(--coin);
-  background:var(--coin-soft);border-radius:0 14px 14px 0;font-size:17px}
-blockquote p:last-child{margin:0}
+O que é este guia
+É esse conselho de cem anos atrás, sem a Babilônia. Escrito para você aplicar com uma criança de verdade, na semana que vem.
 
-.lead{font-size:20px;color:var(--ink)}
-.foot{margin-top:52px;padding-top:22px;border-top:3px solid var(--edge);font-size:14.5px;color:var(--ink-soft)}
-.foot a{color:var(--grape)}
-.foot p{max-width:none}
-</style>
-</head>
-<body>
-<div class="wrap">
+Não é teoria sobre educação financeira. São as frases que funcionam em cada idade, o que fazer quando o dinheiro acaba no dia dez, e um roteiro de quinze minutos por mês que seu filho não vai passar a evitar.
 
-<header>
-  <p class="eyebrow">Meu Caixa · guia dos pais</p>
-  <h1>O que dizer quando ele gastar tudo no dia dez</h1>
-  <p class="deck">Um guia de quinze minutos por mês para ensinar mesada, poupança e escolha — dos quatro aos dezesseis anos. Acompanha o aplicativo Meu Caixa, que é gratuito.</p>
-</header>
+O que vem no pacote
+O guia completo, 28 páginas
+Em oito partes: os combinados antes de começar, os três potinhos, juros compostos explicados para quem vai ensinar, o que dizer em cada idade (4-6, 7-9, 10-12, 13-16), as cinco situações em que dá errado, o roteiro da conversa do mês, uma parte só para avós, e os seis erros que os pais cometem.
 
-<div class="hero">
-  <div>
-    <p class="lead">Você dá mesada e torce para dar certo.</p>
-    <p>Ninguém te ensinou o que falar. Não te ensinaram na escola, não te ensinaram em casa, e a escola do seu filho também não vai ensinar. Então a mesada vira um valor que cai todo mês e some — e a conversa que deveria acontecer nunca acontece, porque você não sabe por onde começar.</p>
-  </div>
-  <div class="plate">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 560" role="img" aria-label="Uma moeda plantada na terra, brotando em planta com folhas">
-  <defs>
-    <style>
-      .ink   { fill:none; stroke:#1B2340; stroke-width:9; stroke-linecap:round; stroke-linejoin:round; }
-      .thin  { fill:none; stroke:#1B2340; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
-      .root  { fill:none; stroke:#1B2340; stroke-width:5; stroke-linecap:round; opacity:.85 }
-      .rootf { fill:none; stroke:#1B2340; stroke-width:3.5; stroke-linecap:round; opacity:.6 }
-      .leaf  { fill:#25D3A0; stroke:#1B2340; stroke-width:6; stroke-linejoin:round; }
-      .coin  { fill:#FFC93C; stroke:#1B2340; stroke-width:5; }
-      .soil  { fill:#E8DCC8; stroke:#1B2340; stroke-width:7; stroke-linejoin:round; }
-      .grain { fill:#1B2340; opacity:.22 }
-    </style>
-  </defs>
+O combinado da mesada
+Folha para preencher junto, assinar os dois e deixar na geladeira. Combinado escrito discute menos.
 
-  <!-- terra -->
-  <path class="soil" d="M18,356 C 90,338 140,368 210,360 C 280,352 330,336 402,356 L402,516 C 402,530 390,540 376,540 L44,540 C 30,540 18,530 18,516 Z"/>
-  <g class="grain">
-    <circle cx="70"  cy="404" r="4"/><circle cx="128" cy="452" r="3"/>
-    <circle cx="316" cy="410" r="4"/><circle cx="360" cy="470" r="3"/>
-    <circle cx="196" cy="500" r="3.5"/><circle cx="96"  cy="500" r="3"/>
-    <circle cx="272" cy="486" r="3.5"/>
-  </g>
+Cartões para imprimir, 5 folhas
+Rótulos para colar em três potes de verdade, o termômetro da meta com cem quadradinhos para pintar, dezenove cartões de conversa separados por idade, e oito vales de mesada.
 
-  <!-- raizes: o que faz crescer e nao se ve -->
-  <g>
-    <path class="root" d="M210,352 C 208,392 196,410 176,432 C 158,452 150,470 148,492"/>
-    <path class="root" d="M210,352 C 214,394 228,412 250,432 C 268,450 276,468 278,490"/>
-    <path class="root" d="M210,356 C 210,400 210,440 210,506"/>
-    <path class="rootf" d="M182,424 C 166,432 152,430 138,420"/>
-    <path class="rootf" d="M244,424 C 260,432 274,430 288,418"/>
-    <path class="rootf" d="M210,438 C 194,450 186,462 184,478"/>
-    <path class="rootf" d="M210,438 C 226,450 234,462 236,478"/>
-    <path class="rootf" d="M160,462 C 146,470 138,480 136,492"/>
-    <path class="rootf" d="M262,462 C 276,470 284,480 286,492"/>
-  </g>
+A Máquina do Milhão
+Uma calculadora onde você põe a idade do seu filho e quanto ele consegue guardar, e vê o resultado aos 60 — junto com o preço de começar dez anos mais tarde. Ilustra o efeito do tempo; não recomenda investimento nenhum. Experimente agora, é aberta.
 
-  <!-- moedas na terra: o rendimento -->
-  <circle class="coin" cx="112" cy="440" r="17"/>
-  <circle class="coin" cx="306" cy="452" r="14"/>
-  <circle class="coin" cx="210" cy="512" r="12"/>
+O aplicativo Meus Potinhos
+Funciona no celular, no tablet e no computador, sem instalar nada de loja e sem internet depois da primeira vez. É gratuito e continua sendo. Abrir o aplicativo.
 
-  <!-- caule = haste do cifrao -->
-  <path class="ink" d="M210,352 L210,44"/>
+Para quem é
+Pais e avós de crianças de 4 a 16 anos que já dão mesada — ou que estão em dúvida sobre começar.
 
-  <!-- o S do cifrao, feito de planta -->
-  <path class="ink" style="stroke:#25D3A0;stroke-width:17"
-        d="M262,116 C 262,88 238,76 210,76 C 180,76 156,90 156,118
-           C 156,146 186,158 210,168 C 238,180 266,192 266,222
-           C 266,250 240,264 210,264 C 180,264 156,250 154,224"/>
-  <path class="thin"
-        d="M262,116 C 262,88 238,76 210,76 C 180,76 156,90 156,118
-           C 156,146 186,158 210,168 C 238,180 266,192 266,222
-           C 266,250 240,264 210,264 C 180,264 156,250 154,224"/>
+Não é sobre investimento. Não é sobre enriquecer. Até os dezesseis, o assunto é aprender a decidir; o resto vem depois.
 
-  <!-- folhas -->
-  <g class="leaf">
-    <path d="M156,118 C 122,100 96,104 82,120 C 100,142 132,142 156,118 Z"/>
-    <path d="M266,222 C 300,204 326,208 340,224 C 322,246 290,246 266,222 Z"/>
-    <path d="M210,76 C 204,42 214,18 236,10 C 250,30 240,60 210,76 Z"/>
-    <path d="M154,224 C 124,238 106,258 108,278 C 132,278 152,256 154,224 Z"/>
-    <path d="M262,116 C 292,102 314,84 314,64 C 290,62 268,84 262,116 Z"/>
-  </g>
+Três coisas que você deve saber
+Nenhum dado da criança sai do aparelho. Sem cadastro, sem nuvem, sem propaganda. Nada do que ela anota chega a mim ou a qualquer outra pessoa.
 
-  <!-- broto novo no topo -->
-  <circle class="coin" cx="210" cy="44" r="15"/>
-</svg>
-  </div>
-</div>
+O aplicativo não fala de investimento. De propósito. Pai nenhum quer app empurrando aplicação financeira para filho de dez anos.
 
-<h2>Por que os livros não resolveram</h2>
-<p>Existe um clássico sobre dinheiro. Foi escrito em 1926, chama-se <em>O Homem Mais Rico da Babilônia</em>, e o conselho dele é o melhor que já se deu sobre finanças pessoais: guarde uma parte de tudo o que você ganha, sempre, antes de gastar.</p>
-<p>O problema é que quase ninguém chega até esse conselho. As histórias se passam na Babilônia de quatro mil anos atrás, os personagens se chamam Arkad e Bansir, e o texto imita o tom solene de fábula antiga.</p>
-<p>Já dei esse livro de presente a um rapaz, no ano exato em que ele começou a trabalhar e a lidar com o próprio dinheiro. O momento perfeito. Ele não passou das primeiras páginas.</p>
-<p>Também vi uma gerente de banco — alguém que lida com dinheiro todo dia — devolver o livro dizendo que não entendeu o que as metáforas queriam dizer.</p>
-<blockquote><p>O que envelheceu foi a embalagem. A ideia continua valendo.</p></blockquote>
+Funciona offline. Depois da primeira visita, abre sem internet.
 
-<h2>O que é este guia</h2>
-<p>É esse conselho de cem anos atrás, sem a Babilônia. Escrito para você aplicar com uma criança de verdade, na semana que vem.</p>
-<p>Não é teoria sobre educação financeira. São as frases que funcionam em cada idade, o que fazer quando o dinheiro acaba no dia dez, e um roteiro de quinze minutos por mês que seu filho não vai passar a evitar.</p>
+Quem escreveu
+Aurelio de Bortoli. Formado em Ciências Econômicas e Ciências Contábeis, com MBA em Controladoria Financeira, trabalhei anos como diretor financeiro em empresas multinacionais.
 
-<h2>O que vem no pacote</h2>
-<ul class="pack">
-  <li>
-    <h3>O guia completo, 28 páginas</h3>
-    <p>Em oito partes: os combinados antes de começar, os três potinhos, juros compostos explicados para quem vai ensinar, o que dizer em cada idade (4-6, 7-9, 10-12, 13-16), as cinco situações em que dá errado, o roteiro da conversa do mês, uma parte só para avós, e os seis erros que os pais cometem.</p>
-  </li>
-  <li>
-    <h3>O combinado da mesada</h3>
-    <p>Folha para preencher junto, assinar os dois e deixar na geladeira. Combinado escrito discute menos.</p>
-  </li>
-  <li>
-    <h3>Cartões para imprimir, 5 folhas</h3>
-    <p>Rótulos para colar em três potes de verdade, o termômetro da meta com cem quadradinhos para pintar, dezenove cartões de conversa separados por idade, e oito vales de mesada.</p>
-  </li>
-  <li>
-    <h3>A Máquina do Milhão</h3>
-    <p>Uma calculadora onde você põe a idade do seu filho e quanto ele consegue guardar, e vê o resultado aos 60 — junto com o preço de começar dez anos mais tarde. Ilustra o efeito do tempo; não recomenda investimento nenhum. <a href="/maquina/">Experimente agora</a>, é aberta.</p>
-  </li>
-  <li>
-    <h3>O aplicativo Meu Caixa</h3>
-    <p>Funciona no celular, no tablet e no computador, sem instalar nada de loja e sem internet depois da primeira vez. É gratuito e continua sendo. <a href="/">Abrir o aplicativo</a>.</p>
-  </li>
-</ul>
+Mas o motivo de eu ter escrito isto não é o currículo: é que tenho netas, penso nesse assunto há anos, e queria deixar para elas algo melhor do que um livro que elas não iam ler.
 
-<h2>Para quem é</h2>
-<p>Pais e avós de crianças de 4 a 16 anos que já dão mesada — ou que estão em dúvida sobre começar.</p>
-<p>Não é sobre investimento. Não é sobre enriquecer. Até os dezesseis, o assunto é aprender a decidir; o resto vem depois.</p>
+O que você recebe e como
+Os arquivos ficam disponíveis assim que o pagamento é confirmado, na área de membros. Você baixa quando quiser, quantas vezes quiser, e imprime à vontade.
 
-<h2>Três coisas que você deve saber</h2>
-<ul class="facts">
-  <li><span class="dot"></span><p><b>Nenhum dado da criança sai do aparelho.</b> Sem cadastro, sem nuvem, sem propaganda. Nada do que ela anota chega a mim ou a qualquer outra pessoa.</p></li>
-  <li><span class="dot"></span><p><b>O aplicativo não fala de investimento.</b> De propósito. Pai nenhum quer app empurrando aplicação financeira para filho de dez anos.</p></li>
-  <li><span class="dot"></span><p><b>Funciona offline.</b> Depois da primeira visita, abre sem internet.</p></li>
-</ul>
+Logo depois do pagamento você recebe um aviso e cria uma senha na área de membros — leva um minuto. É essa senha que deixa você voltar e baixar os arquivos quando precisar, sem ter que procurar e-mail antigo.
 
-<h2>Quem escreveu</h2>
-<p>Aurelio de Bortoli. Formado em Ciências Econômicas e Ciências Contábeis, com MBA em Controladoria Financeira, trabalhei anos como diretor financeiro em empresas multinacionais.</p>
-<p>Mas o motivo de eu ter escrito isto não é o currículo: é que tenho netas, penso nesse assunto há anos, e queria deixar para elas algo melhor do que um livro que elas não iam ler.</p>
+O pacote completo
 
-<h2>O que você recebe e como</h2>
-<p>Os arquivos ficam disponíveis assim que o pagamento é confirmado, na área de membros. Você baixa quando quiser, quantas vezes quiser, e imprime à vontade.</p>
-<p>Logo depois do pagamento você recebe um aviso e cria uma senha na área de membros — leva um minuto. É essa senha que deixa você voltar e baixar os arquivos quando precisar, sem ter que procurar e-mail antigo.</p>
+R$ 29,90
+Pagamento único, sem mensalidade.
 
-<div class="buy">
-  <p class="eyebrow">O pacote completo</p>
-  <p class="price">R$ 29,90<small>Pagamento único, sem mensalidade.</small></p>
-  <a class="cta" href="https://pay.kiwify.com.br/vdF2AFs">Quero o guia →</a>
-  <p class="guarantee">Sete dias de garantia: se não servir para você, devolvo o valor integral, sem perguntas.</p>
-</div>
+Quero o guia →
+Sete dias de garantia: se não servir para você, devolvo o valor integral, sem perguntas.
 
-<footer class="foot">
-  <p>O aplicativo <a href="/">Meu Caixa</a> é gratuito e continua sendo. A <a href="/maquina/">Máquina do Milhão</a> também é aberta a quem quiser usar.</p>
-  <p>A Máquina do Milhão nasceu de uma apresentação criada para os cursos de Aurelio de Bortoli, com design e ilustração originais de Fabio de Bortoli.</p>
-  <p>Nada aqui é recomendação de investimento. O material trata de hábito e de conversa em família, não de onde aplicar dinheiro.</p>
-</footer>
+O aplicativo Meus Potinhos é gratuito e continua sendo. A Máquina do Milhão também é aberta a quem quiser usar.
 
-</div>
-</body>
-</html>
+A Máquina do Milhão nasceu de uma apresentação criada para os cursos de Aurelio de Bortoli, com design e ilustração originais de Fabio de Bortoli.
+
+Nada aqui é recomendação de investimento. O material trata de hábito e de conversa em família, não de onde aplicar dinheiro.
