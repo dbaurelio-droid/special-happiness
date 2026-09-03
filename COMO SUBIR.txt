@@ -1,0 +1,34 @@
+ATUALIZAR O MANIFEST (nome ao adicionar na tela inicial) - TROCA DE MARCA
+===========================================================================
+
+Este e o arquivo que da o nome ao app quando alguem adiciona ele
+na tela inicial do celular ("Adicionar a tela de inicio"). Ele
+trocou de "Meu Caixa" para "Meus Potinhos".
+
+Os icones (o desenho do app) NAO mudaram - ainda nao temos um
+icone novo desenhado para "Meus Potinhos", entao por enquanto
+continua o icone antigo. Se quiser um icone novo, e so pedir.
+
+
+PASSO A PASSO
+-------------
+
+1. Abra:
+   https://github.com/dbaurelio-droid/special-happiness/blob/main/manifest.webmanifest
+
+   Se o arquivo NAO EXISTIR nesse endereco, ele deve estar em
+   outro nome/pasta - me avise antes de continuar, para eu achar
+   o caminho certo e nao criar um arquivo duplicado.
+
+2. Clique no lapis (Edit this file), no canto superior direito.
+
+3. Clique dentro do codigo, selecione tudo (Cmd+A), apague.
+
+4. Abra o manifest.webmanifest desta pasta num editor de texto,
+   selecione tudo (Cmd+A), copie (Cmd+C) e cole no GitHub.
+
+5. ROLE ATE O FIM e clique em "Commit changes".
+
+6. Espere uns dois minutos. Para conferir, no celular abra o
+   site e veja se o nome mudou ao adicionar a tela inicial
+   (pode ser preciso remover o atalho antigo e adicionar de novo).
